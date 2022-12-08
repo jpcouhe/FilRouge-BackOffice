@@ -31,7 +31,7 @@
 
             </div>
             <div class="dashboard-card">
-                <h2>Inscriptions non terminées</h2>
+                <h2>Utilisateurs non activés</h2>
                 <span>${fn:length(usersActives)}</span>
             </div>
 
