@@ -56,7 +56,7 @@
                     <th class="text-center">Email</th>
                     <th class="text-center">Role</th>
                     <th class="text-center">Status</th>
-                    <th class="action text-center">Action</th>
+                    <th class="action text-center">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
