@@ -1,5 +1,9 @@
 package com.example.backofficefilrouge.servlet;
 
+import com.example.backofficefilrouge.Dao.RoleDao;
+import com.example.backofficefilrouge.Dao.UserDaoJpa;
+import com.example.backofficefilrouge.entity.RolesEntity;
+import com.example.backofficefilrouge.entity.UsersEntity;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -7,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @WebServlet(name = "UserProfilServlet", value = UserProfilServlet.URL)
 public class UserProfilServlet extends HttpServlet {
@@ -16,15 +21,44 @@ public class UserProfilServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String idStr = req.getParameter("id");
+        try{
+            UserDaoJpa userDao = new UserDaoJpa();
+            Optional<UsersEntity> user = userDao.findById(Integer.parseInt(idStr));
 
-
-
-
-        req.getRequestDispatcher("/WEB-INF/user-edit.jsp").forward(req, resp);
+            if(user.isPresent()){
+                req.setAttribute("user", user.get());
+                req.getRequestDispatcher("/WEB-INF/user-edit.jsp").forward(req, resp);
+            }
+            else{
+                System.out.println("Nous n'avons pas trouvé de user avec cet identifiant.");
+            }
+        }catch (NumberFormatException e){
+            System.err.println(e.getMessage());
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        try{
+            String idToUpd = req.getParameter("id");
+            int id = Integer.parseInt(idToUpd);
+            UserDaoJpa userDao = new UserDaoJpa();
+            Optional<UsersEntity> userToUpd = userDao.findById(id);
+
+            if(userToUpd.isPresent()){
+                userToUpd.get().setUserName(req.getParameter("userName"));
+                userToUpd.get().setUserFirstname(req.getParameter("userFirstname"));
+                userToUpd.get().setUserCity(req.getParameter("userCity"));
+                userToUpd.get().setRoleId(Integer.parseInt(req.getParameter("userRole")));
+
+                userDao.update(userToUpd.get());
+                resp.sendRedirect(req.getContextPath() + "/user");
+            }
+            else{
+                System.out.println("Aucun user n'a été trouvé.");
+            }
+        }catch (NumberFormatException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }

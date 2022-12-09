@@ -42,9 +42,10 @@ public class UserDaoJpa implements UserDao<UsersEntity> {
 
         try {
             et.begin();
-            UsersEntity user = entityManager.createQuery("SELECT c FROM UsersEntity c WHERE c.id = :idParam", UsersEntity.class)
+            UsersEntity user = entityManager.createQuery("SELECT c FROM UsersEntity c JOIN FETCH c.rolesByRoleId WHERE c.id = :idParam", UsersEntity.class)
                     .setParameter("idParam", id)
                     .getSingleResult();
+
             et.commit();
             return Optional.of(user);
         } catch (Exception e) {
@@ -128,8 +129,21 @@ public class UserDaoJpa implements UserDao<UsersEntity> {
     }
 
     @Override
-    public UsersEntity update(UsersEntity userrEntity) {
-        return null;
+    public void update(UsersEntity userEntity) {
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            em.merge(userEntity);
+            et.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (et.isActive()) {
+                et.rollback();
+            }
+        } finally {
+            em.close();
+        }
     }
 
     @Override

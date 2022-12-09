@@ -11,7 +11,7 @@ public interface UserDao<E> {
 
     boolean delete(int id);
 
-    E update(E e);
+    void update(E e);
 
     E signUp(E e);
 

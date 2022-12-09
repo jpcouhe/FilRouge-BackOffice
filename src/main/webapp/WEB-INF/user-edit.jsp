@@ -22,41 +22,49 @@
     <h1>Profil Utilisateur</h1>
             <div class="card-profil">
                 <img class="card-profil-img" src="https://bootdey.com/img/Content/avatar/avatar4.png">
-                <form class="needs-validation" novalidate>
+                <form method="post" class="needs-validation" novalidate action="${pageContext.request.contextPath}/user/edit?id=${user.userId}">
                     <div class="row g-3">
                         <div class="col-6">
                             <label for="name" class="form-label">Nom</label>
-                            <input  type="text" class="form-control form-profil" id="name">
+                            <input  type="text" class="form-control form-profil" id="name" name="userName" value="${user.userName}">
                         </div>
 
                         <div class="col-6">
                             <label for="firstname" class="form-label">Prénom</label>
-                            <input  type="text" class="form-control form-profil" id="firstname">
+                            <input  type="text" class="form-control form-profil" id="firstname" name="userFirstname" value="${user.userFirstname}">
                         </div>
 
                         <div class="col-12">
                             <label for="role" class="form-label">Role</label>
-                            <select class="form-select form-profil" id="role" >
-                                <option value="">Choisir...</option>
-                                <option value="admin">Admin</option>
-                                <option value="user">Utilisateur</option>
+                            <select class="form-select form-profil" id="role" name="userRole">
+                                <option value="" >Choisir...</option>
+                                <c:choose>
+                                    <c:when test="${user.roleId == 1}">
+                                        <option value="2" >admin</option>
+                                        <option value="1" selected>user</option>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <option value="2" selected>admin</option>
+                                        <option value="1">user</option>
+                                    </c:otherwise>
+                                </c:choose>
                             </select>
                         </div>
 
                         <div class="col-12">
                             <label for="city" class="form-label">Ville</label>
-                            <input type="text" class="form-control form-profil" id="city">
+                            <input type="text" class="form-control form-profil" id="city" name="userCity" value="${user.userCity}">
                         </div>
 
                     </div>
                     <div class="d-flex gap-5 profil-action">
+
                         <button class="w-50 btn btn-primary btn-lg" type="submit">Modifier</button>
+
                         <button class="w-50 btn btn-danger btn-lg" type="submit">Désactiver</button>
                     </div>
                 </form>
-
     </div>
-
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
 </body>
