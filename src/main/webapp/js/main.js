@@ -18,3 +18,9 @@ function toggleNav(){
         togglerImg.src = "/assets/img/hamburger.svg"
     }
 }
+
+
+
+
+
+// Modal

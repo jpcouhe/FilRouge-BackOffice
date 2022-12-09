@@ -28,13 +28,23 @@ form{
     border-radius: 25px;
 }
 
-form h2 {
-    color: var(--white)
+
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-signin input[type="email"] {
+    margin-bottom: 20px;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
 }
 
 .form-btn{
     background-color: var(--secondary);
     color: var(--white);
+    padding: 1.1rem 0.75rem;
 }
 
 .form-btn:hover {
@@ -42,36 +52,9 @@ form h2 {
     background-color: var(--hover);
 }
 
-.form-signin .form-floating:focus-within {
-    z-index: 2;
-}
-
-.form-signin input[type="email"] {
-    margin-bottom: 40px;
-    padding: 2.5rem 0.75rem;
-}
-
-.form-signin input[type="password"] {
-    margin-bottom: 20px;
-    padding: 2.5rem 0.75rem;
-}
-
-.form-signin input[type="email"]:focus,.form-signin input[type="password"]:focus  {
-    box-shadow: 0 0 5px var(--secondary);
-    padding: 2.5rem 0.75rem;
-}
-
-.form-btn{
-    padding: 1.1rem 0.75rem;
-    font-size: 1.8rem;
-}
-
-
 .checkbox{
     color: var(--white);
-    background-color: var(--primary);
-}
-
+    background-color: var(--primary);}
 
 @media only screen and (max-width: 425px ) {
     .form-signin {
