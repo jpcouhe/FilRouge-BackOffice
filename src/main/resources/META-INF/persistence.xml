@@ -18,7 +18,7 @@
                       value="jdbc:mysql://localhost:3306/bdd_fil_rouge?serverTimezone=UTC"/>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
-            <property name="jakarta.persistence.jdbc.password" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value=""/>
             <!-- Affiche les requêtes SQL dans la console         -->
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/bdd_fil_rouge"/>

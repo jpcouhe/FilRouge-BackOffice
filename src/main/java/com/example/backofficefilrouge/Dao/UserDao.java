@@ -9,7 +9,7 @@ public interface UserDao<E> {
 
     Optional<E> findById(int id);
 
-    boolean delete(int id);
+    void delete(E e);
 
     void update(E e);
 

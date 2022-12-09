@@ -52,6 +52,7 @@ public class UserProfilServlet extends HttpServlet {
                 userToUpd.get().setRoleId(Integer.parseInt(req.getParameter("userRole")));
 
                 userDao.update(userToUpd.get());
+
                 resp.sendRedirect(req.getContextPath() + "/user");
             }
             else{

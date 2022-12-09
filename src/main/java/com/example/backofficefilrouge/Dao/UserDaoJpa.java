@@ -124,8 +124,22 @@ public class UserDaoJpa implements UserDao<UsersEntity> {
     }
 
     @Override
-    public boolean delete(int id) {
-        return false;
+    public void delete(UsersEntity user) {
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            UsersEntity userToDelete = em.find(UsersEntity.class, user.getUserId());
+            em.remove(userToDelete);
+            et.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (et.isActive()) {
+                et.rollback();
+            }
+        } finally {
+            em.close();
+        }
     }
 
     @Override

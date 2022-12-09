@@ -39,7 +39,7 @@ public class UsersEntity {
 
     @OneToMany(mappedBy = "usersByUserId")
     private Collection<InteractEntity> interactsByUserId;
-    @OneToMany(mappedBy = "usersByUserId")
+    @OneToMany(mappedBy = "usersByUserId" , cascade = {CascadeType.REMOVE})
     private Collection<PlanningsEntity> planningsByUserId;
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "role_id", insertable = false, updatable = false)

@@ -61,9 +61,18 @@
                         <button class="w-50 btn btn-primary btn-lg" type="submit">Modifier</button>
                     </div>
                 </form>
-                <form class="d-flex justify-content-center" method="post" action="${pageContext.request.contextPath}/user/desactivate?id=${user.userId}">
-                    <button class="w-50 btn btn-danger btn-lg" type="submit">Désactiver</button>
-                </form>
+                <c:choose >
+                    <c:when test="${user.isActive == 1}">
+                        <form class="d-flex justify-content-center" method="post" action="${pageContext.request.contextPath}/user/desactivate?id=${user.userId}">
+                            <button class="w-50 btn btn-danger btn-lg" type="submit">Désactiver</button>
+                        </form>
+                    </c:when>
+                    <c:otherwise>
+                        <form class="d-flex justify-content-center" method="post" action="${pageContext.request.contextPath}/user/activate?id=${user.userId}">
+                            <button class="w-50 btn btn-primary btn-lg" type="submit">Activer</button>
+                        </form>
+                    </c:otherwise>
+                </c:choose>
     </div>
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>

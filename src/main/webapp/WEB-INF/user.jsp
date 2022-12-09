@@ -105,7 +105,13 @@
                     <td>
                         <ul class="list-unstyled mb-0 d-flex justify-content-center">
                             <li><a href="${pageContext.request.contextPath}/user/edit?id=${user.userId}" class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a></li>
-                            <li><button class="text-danger border-0" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-trash-alt"></i></button ></li>
+<%--                            <li><a href="${pageContext.request.contextPath}/user/delete?id=${user.userId}" class="text-danger border-0" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-trash-alt"></i></a ></li>--%>
+                            <li>
+                                <form method="post" action="${pageContext.request.contextPath}/user/delete?id=${user.userId}">
+                                <button class="text-danger border-0"><i class="far fa-trash-alt"></i></button>
+                                </form>
+                            </li>
+
                         </ul>
                     </td>
                 </tr>
@@ -125,11 +131,11 @@
                 <div class="modal-bod p-5">
                     Si vous continuez, le profil et les informations du compte seront totalements supprimés. En revanche, si vous changez d'avis, sachez que vous ne pourrez pas le récupérer
                 </div>
-                <div class="modal-footer">
-                    <form action="" method="post">
-                        <button type="button" class="btn btn-danger">Confirmer</button>
-                    </form>
-                </div>
+<%--                <div class="modal-footer">--%>
+<%--                    <form method="post">--%>
+<%--                        <button type="submit" class="btn btn-danger">Confirmer</button>--%>
+<%--                    </form>--%>
+<%--                </div>--%>
             </div>
         </div>
     </div>
