@@ -24,16 +24,23 @@ public class DesactUserServlet extends HttpServlet {
         UserDaoJpa userDao = new UserDaoJpa();
         Optional<UsersEntity> userToDesact = userDao.findById(Integer.parseInt(idStr));
 
-        if(userToDesact.isPresent()){
-            if(userToDesact.get().getIsActive().equals((byte) 1)){
-                userToDesact.get().setIsActive((byte) 0);
-                //userDao.desactUser(userToDesact.get(), (byte) 0);
-                userDao.update(userToDesact.get());
 
-                resp.sendRedirect(req.getContextPath() + "/user");
+        if(userToDesact.isPresent()){
+            if(userToDesact.get().getRoleId() == 1){
+                if(userToDesact.get().getIsActive().equals((byte) 1)){
+                    userToDesact.get().setIsActive((byte) 0);
+                    //userDao.desactUser(userToDesact.get(), (byte) 0);
+                    userDao.update(userToDesact.get());
+
+                    resp.sendRedirect(req.getContextPath() + "/user");
+                }else {
+                    resp.sendRedirect(req.getContextPath() + "/user");
+                }
             }else {
                 resp.sendRedirect(req.getContextPath() + "/user");
+                System.out.println("Cet utilisateur est administrateur. Il ne peux pas être supprimé.");
             }
+
         }else{
             System.out.println("Aucun user n'a été trouvé avec cet id");
         }

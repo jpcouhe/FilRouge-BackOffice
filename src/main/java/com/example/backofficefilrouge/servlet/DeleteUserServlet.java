@@ -25,13 +25,19 @@ public class DeleteUserServlet extends HttpServlet {
             UserDaoJpa userDao = new UserDaoJpa();
             Optional<UsersEntity> user = userDao.findById(id);
 
-            if (user.isPresent()) {
-                userDao.delete(user.get());
-                resp.sendRedirect(req.getContextPath() + "/user");
-            } else {
-                System.out.println("Aucun user");
-            }
 
+                if (user.isPresent()) {
+                    if(user.get().getRoleId() == 1){
+                        userDao.delete(user.get());
+                        resp.sendRedirect(req.getContextPath() + "/user");
+                    }
+                    else{
+                        resp.sendRedirect(req.getContextPath() + "/user");
+                        System.out.println("Cet utilisateur est administrateur. Il ne peux pas être supprimé.");
+                    }
+                } else {
+                    System.out.println("Aucun user");
+            }
         } catch (NumberFormatException e) {
             System.err.println(e.getMessage());
         }
