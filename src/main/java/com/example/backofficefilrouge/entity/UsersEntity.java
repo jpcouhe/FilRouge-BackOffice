@@ -32,6 +32,11 @@ public class UsersEntity {
     @Basic
     @Column(name = "role_id")
     private int roleId;
+
+    @Basic
+    @Column(name = "user_city")
+    private String userCity;
+
     @OneToMany(mappedBy = "usersByUserId")
     private Collection<InteractEntity> interactsByUserId;
     @OneToMany(mappedBy = "usersByUserId")
@@ -159,5 +164,13 @@ public class UsersEntity {
 
     public void setRolesByRoleId(RolesEntity rolesByRoleId) {
         this.rolesByRoleId = rolesByRoleId;
+    }
+
+    public String getUserCity() {
+        return userCity;
+    }
+
+    public void setUserCity(String userCity) {
+        this.userCity = userCity;
     }
 }

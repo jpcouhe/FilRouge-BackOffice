@@ -34,8 +34,6 @@
                 <h2>Utilisateurs non activés</h2>
                 <span>${fn:length(usersActives)}</span>
             </div>
-
-
         </div>
         <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm ">
             <div class="user-dashboard-header">
@@ -70,36 +68,29 @@
                 <c:forEach items="${users}" var="user">
                 <tr class="users-list">
                     <td class="title">
-                        <a href="/user/profil?id=1">
                             <div class="thumb">
                                 <img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="">
                             </div>
                             <div class="user-list-details">
                                 <div class="user-list-info">
                                     <div class="user-list-title">
-                                        <h5 class="mb-0"><a href="#">${user.userFirstname} ${user.userName} </a></h5>
+                                        <h5 class="mb-0">${user.userFirstname} ${user.userName}</h5>
                                     </div>
                                     <div class="user-list-option">
                                         <ul class="list-unstyled">
-                                            <li><i class="fas fa-map-marker-alt pr-1"> Orleans </i></li>
+                                            <li><i class="fas fa-map-marker-alt pr-1"> ${user.userCity} </i></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                        </a>
                     </td>
                     <td class="text-center text-truncate user-mail" >
-                        <a  href="/user/profil?id=1">
-                            <span class="span-td">${user.userEmail}</span>
-                        </a>
+                        <span class="span-td">${user.userEmail}</span>
                      </td>
                     <td class="text-center ">
-                        <a class="span-td" href="/user/profil?id=1">
                             <span class="user-list-time order-1"> ${user.rolesByRoleId.roleName} </span>
-                        </a>
                     </td>
                     <td class="user-list-favourite-time text-center">
-                        <a class="span-td" href="/user/profil?id=1">
                             <span class="user-list-time order-1">
                                 <c:choose >
                                     <c:when test="${user.isActive == 1}">
@@ -110,11 +101,10 @@
                                     </c:otherwise>
                                 </c:choose>
                             </span>
-                        </a>
                     </td>
                     <td>
                         <ul class="list-unstyled mb-0 d-flex justify-content-center">
-                            <li><a href="#" class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a></li>
+                            <li><a href="${pageContext.request.contextPath}/user/edit?id=${user.userId}" class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a></li>
                             <li><a href="#" class="text-danger" data-toggle="tooltip" title="" data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
                         </ul>
                     </td>
@@ -122,27 +112,6 @@
                 </c:forEach>
                 </tbody>
             </table>
-        </div>
-
-     <%--   <c:forEach items="${users}" var="user">
-                    <p>${user.userName} - ${user.userFirstname}</p>
-        </c:forEach>--%>
-        <div class="card-container">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text input-group-text-card"><i class="fa-solid fa-magnifying-glass"></i></span>
-                </div>
-                <input type="text" class="form-control" placeholder="Rechercher" aria-label="rechercher" aria-describedby="basic-addon1">
-            </div>
-            <div class="card" style="width: 100%;">
-                <a href="#">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar4.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Nichole Haynes</h5>
-                        <p class="card-text">nicholeHaynes@hotmail.fr</p>
-                    </div>
-                </a>
-            </div>
         </div>
     </div>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>

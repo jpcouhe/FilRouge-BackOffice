@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <header class="d-flex d-md-block justify-content-between align-items-center">
         <div class="logo">
-            <a href="#"><img class="w-100" src="${pageContext.request.contextPath}/assets/img/icons8-calendar-100.png" alt="logo calendar"></a>
+            <a href="${pageContext.request.contextPath}/user"><img class="w-100" src="${pageContext.request.contextPath}/assets/img/icons8-calendar-100.png" alt="logo calendar"></a>
         </div>
     <nav class="main-nav d-none d-sm-flex flex-md-column">
         <ul class="d-sm-flex flex-md-column ">
-           <li class="list"><a class="d-flex align-items-center" href="#"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></li>
+           <li class="list"><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/user"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></li>
            <li class="list"><a class="d-flex align-items-center" href="#"><i class="fa-regular fa-user"></i><span>Profil</span></a></li>
            <li class="list"><a class="d-flex align-items-center" href="#"><i class="fa-solid fa-gear"></i><span>Settings</span></a></li>
         </ul>
