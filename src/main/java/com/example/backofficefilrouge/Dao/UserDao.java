@@ -16,4 +16,6 @@ public interface UserDao<E> {
     E signUp(E e);
 
     E logIn(String email, String psw);
+
+    List<E> findAllUser(int currentPage, int recordsPerPage);
 }

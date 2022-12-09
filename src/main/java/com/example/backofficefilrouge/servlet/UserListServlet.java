@@ -1,6 +1,7 @@
 package com.example.backofficefilrouge.servlet;
 
 import com.example.backofficefilrouge.Dao.UserDao;
+import com.example.backofficefilrouge.Dao.UserDaoJpa;
 import com.example.backofficefilrouge.entity.UsersEntity;
 import com.example.backofficefilrouge.factory.DaoFactory;
 import jakarta.servlet.*;
@@ -19,12 +20,29 @@ public class UserListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDao<UsersEntity> userDao = DaoFactory.getUserDao();
         List<UsersEntity> userList = userDao.findAll();
+        int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+        int recordsPerPage = Integer.parseInt(request.getParameter("recordsPerPage"));
+
+        /*------------------------------------------------------------------*/
+        List<UsersEntity> userList1 = userDao.findAllUser(currentPage, recordsPerPage);
+
+        int rows = userList.size();
+
+        int nOfPages = rows / recordsPerPage;
+
+        if (nOfPages % recordsPerPage > 0) {
+            nOfPages++;
+        }
+
+        request.setAttribute("noOfPages", nOfPages);
+        request.setAttribute("currentPage", currentPage);
+        request.setAttribute("recordsPerPage", recordsPerPage);
+        /*------------------------------------------------------------------*/
 
 
         List<UsersEntity> usersActives = userList.stream().filter(user -> user.getIsActive() == 0).collect(Collectors.toList());
-
-        System.out.println(usersActives);
-        request.setAttribute("users", userList);
+        request.setAttribute("usersSize", userList);
+        request.setAttribute("users", userList1);
         request.setAttribute("usersActives", usersActives);
         request.getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
     }

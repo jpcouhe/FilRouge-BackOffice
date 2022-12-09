@@ -30,7 +30,7 @@ ul{
 }
 
 .container-dashboard{
-    padding: 100px 20px;
+    padding: 55px 20px;
 }
 
 
@@ -45,7 +45,7 @@ a:hover{
 }
 
 body{
-    display: flex;
+   /* display: flex;*/
     font-family: 'Roboto', sans-serif;
     background-color: var(--bg-colors) ;
     font-size: 1rem;
@@ -101,7 +101,9 @@ nav > ul > li {
 
 /*Responsive Media Queries*/
 
-
+.containerfull{
+    display: flex;
+}
 
 
 tbody, td, tfoot, th, thead, tr{
@@ -391,7 +393,11 @@ tbody, td, tfoot, th, thead, tr{
         font-size: 55%;
     }*/
 
-    body{
+
+    .containerfull{
+        flex-direction: column;
+    }
+    main{
         display: block;
     }
 
@@ -589,6 +595,7 @@ tbody, td, tfoot, th, thead, tr{
     .user-dashboard-info-box .users-list .thumb .img-fluid {
         width: 50px;
         height: 50px;
+        min-width: 50px;
     }
 
     tbody, td, tfoot, th, thead, tr{

@@ -18,79 +18,73 @@
 </head>
 <body>
 
+    <div class="containerfull d-flex">
     <%@ include file="menu.jsp"%>
+        <div class="w-100 container-dashboard" >
+            <h1>Dashboard</h1>
+            <div class="dashboard">
+                <div class="dashboard-card">
+                    <form action="${pageContext.request.contextPath}/user" method="post" >
+                        <h2>Nombre d'utilisateurs</h2>
+                        <span>${fn:length(usersSize)}</span>
+                    </form>
 
-    <div class="w-100 container-dashboard" >
-        <h1>Dashboard</h1>
-        <div class="dashboard">
-            <div class="dashboard-card">
-                <form action="${pageContext.request.contextPath}/user" method="post" >
-                    <h2>Nombre d'utilisateurs</h2>
-                    <span>${fn:length(users)}</span>
-                </form>
-
-            </div>
-            <div class="dashboard-card">
-                <h2>Utilisateurs non activés</h2>
-                <span>${fn:length(usersActives)}</span>
-            </div>
-        </div>
-        <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm ">
-            <div class="user-dashboard-header">
-            <h2>Tous les utilisateurs</h2>
-
-            <div class="input-group input-group-table mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
                 </div>
-                <input type="text" class="form-control" id="rechercher" placeholder="Rechercher" aria-label="rechercher" aria-describedby="basic-addon1" >
+                <div class="dashboard-card">
+                    <h2>Utilisateurs non activés</h2>
+                    <span>${fn:length(usersActives)}</span>
+                </div>
             </div>
+            <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm ">
+                <div class="user-dashboard-header">
+                    <h2>Tous les utilisateurs</h2>
 
-            </div>
-            <table class="table manage-users-top mb-0">
-                <thead>
-                <tr>
-                    <th class="text-center">Nom</th>
-                    <th class="text-center">Email</th>
-                    <th class="text-center">Role</th>
-                    <th class="text-center">Status</th>
-                    <th class="action text-center">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
+                    <div class="input-group input-group-table mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="rechercher" placeholder="Rechercher" aria-label="rechercher" aria-describedby="basic-addon1" >
+                    </div>
 
-<%--                <c:choose>--%>
-<%--                    <c:when test="${condition1}">--%>
+                </div>
+                <table class="table manage-users-top mb-0">
+                    <thead>
+                    <tr>
+                        <th class="text-center">Nom</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Role</th>
+                        <th class="text-center">Status</th>
+                        <th class="action text-center">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-
-<%--                </c:choose>--%>
-
-                <c:forEach items="${users}" var="user">
-                <tr class="users-list">
-                    <td class="title">
-                            <div class="thumb">
-                                <img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="">
-                            </div>
-                            <div class="user-list-details">
-                                <div class="user-list-info">
-                                    <div class="user-list-title">
-                                        <h5 class="mb-0">${user.userFirstname} ${user.userName}</h5>
-                                    </div>
-                                    <div class="user-list-option">
-                                        <ul class="list-unstyled">
-                                            <li><i class="fas fa-map-marker-alt pr-1"> ${user.userCity} </i></li>
-                                        </ul>
+                    <c:forEach items="${users}" var="user">
+                        <tr class="users-list">
+                            <td class="title">
+                                <div class="thumb">
+                                    <img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="">
+                                </div>
+                                <div class="user-list-details">
+                                    <div class="user-list-info">
+                                        <div class="user-list-title">
+                                            <h5 class="mb-0">${user.userFirstname} ${user.userName}</h5>
+                                        </div>
+                                        <div class="user-list-option">
+                                            <ul class="list-unstyled">
+                                                <li><i class="fas fa-map-marker-alt pr-1"> ${user.userCity} </i></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                    </td>
-                    <td class="text-center text-truncate user-mail" >
-                        <span class="span-td">${user.userEmail}</span>
-                     </td>
-                    <td class="text-center ">
-                            <span class="user-list-time order-1"> ${user.rolesByRoleId.roleName} </span>
-                    </td>
-                    <td class="user-list-favourite-time text-center">
+                            </td>
+                            <td class="text-center text-truncate user-mail" >
+                                <span class="span-td">${user.userEmail}</span>
+                            </td>
+                            <td class="text-center ">
+                                <span class="user-list-time order-1"> ${user.rolesByRoleId.roleName} </span>
+                            </td>
+                            <td class="user-list-favourite-time text-center">
                             <span class="user-list-time order-1">
                                 <c:choose >
                                     <c:when test="${user.isActive == 1}">
@@ -101,39 +95,63 @@
                                     </c:otherwise>
                                 </c:choose>
                             </span>
-                    </td>
-                    <td>
-                        <ul class="list-unstyled mb-0 d-flex justify-content-center">
-                            <li><a href="${pageContext.request.contextPath}/user/edit?id=${user.userId}" class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a></li>
-                            <li><button class="text-danger border-0" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-trash-alt"></i></button ></li>
-                        </ul>
-                    </td>
-                </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-
-    </div>
+                            </td>
+                            <td>
+                                <ul class="list-unstyled mb-0 d-flex justify-content-center">
+                                    <li><a href="${pageContext.request.contextPath}/user/edit?id=${user.userId}" class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a></li>
+                                    <li><button class="text-danger border-0" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-trash-alt"></i></button ></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+                <div class="text-center mt-3 mt-sm-3">
+                    <ul class="pagination justify-content-center mb-0">
+                        <c:if test="${currentPage != 1}">
+                            <li class="page-item"><a class="page-link" href="user?currentPage=${currentPage-1}&recordsPerPage=${recordsPerPage}"><span>Prev</span> </a></li>
+                        </c:if>
+                        <c:forEach begin="1" end="${noOfPages}" var="i">
+                            <c:choose>
+                                <c:when test="${currentPage eq i}">
+                                    <li class="page-item active">
+                                        <a class="page-link">${i} <span class="sr-only">(current)</span></a>
+                                    </li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li class="page-item">
+                                        <a class="page-link"href="user?currentPage=${i}&recordsPerPage=${recordsPerPage}">${i}</a></li>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                        <c:if test="${currentPage < noOfPages}">
+                            <li class="page-item">
+                                <a class="page-link" href="user?currentPage=${currentPage+1}&recordsPerPage=${recordsPerPage}">Next</a>
+                            </li>
+                        </c:if>
+                    </ul>
+                </div>
+            </div>
         </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title" id="exampleModalLabel">Suppression du compte</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-bod p-5">
-                    Si vous continuez, le profil et les informations du compte seront totalements supprimés. En revanche, si vous changez d'avis, sachez que vous ne pourrez pas le récupérer
-                </div>
-                <div class="modal-footer">
-                    <form action="" method="post">
-                        <button type="button" class="btn btn-danger">Confirmer</button>
-                    </form>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title" id="exampleModalLabel">Suppression du compte</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-bod p-5">
+                        Si vous continuez, le profil et les informations du compte seront totalements supprimés. En revanche, si vous changez d'avis, sachez que vous ne pourrez pas le récupérer
+                    </div>
+                    <div class="modal-footer">
+                        <form action="" method="post">
+                            <button type="button" class="btn btn-danger">Confirmer</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
