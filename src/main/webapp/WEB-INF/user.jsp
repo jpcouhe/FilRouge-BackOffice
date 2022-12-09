@@ -126,7 +126,9 @@
                     Si vous continuez, le profil et les informations du compte seront totalements supprimés. En revanche, si vous changez d'avis, sachez que vous ne pourrez pas le récupérer
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger">Confirmer</button>
+                    <form action="" method="post">
+                        <button type="button" class="btn btn-danger">Confirmer</button>
+                    </form>
                 </div>
             </div>
         </div>

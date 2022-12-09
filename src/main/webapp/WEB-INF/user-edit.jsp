@@ -22,7 +22,7 @@
     <h1>Profil Utilisateur</h1>
             <div class="card-profil">
                 <img class="card-profil-img" src="https://bootdey.com/img/Content/avatar/avatar4.png">
-                <form method="post" class="needs-validation" novalidate action="${pageContext.request.contextPath}/user/edit?id=${user.userId}">
+                <form method="post" class="needs-validation form-edit" novalidate action="${pageContext.request.contextPath}/user/edit?id=${user.userId}">
                     <div class="row g-3">
                         <div class="col-6">
                             <label for="name" class="form-label">Nom</label>
@@ -57,12 +57,12 @@
                         </div>
 
                     </div>
-                    <div class="d-flex gap-5 profil-action">
-
+                    <div class="d-flex justify-content-center profil-action">
                         <button class="w-50 btn btn-primary btn-lg" type="submit">Modifier</button>
-
-                        <button class="w-50 btn btn-danger btn-lg" type="submit">Désactiver</button>
                     </div>
+                </form>
+                <form class="d-flex justify-content-center" method="post" action="${pageContext.request.contextPath}/user/desactivate?id=${user.userId}">
+                    <button class="w-50 btn btn-danger btn-lg" type="submit">Désactiver</button>
                 </form>
     </div>
 </div>

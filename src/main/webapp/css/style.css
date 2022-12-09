@@ -379,6 +379,12 @@ tbody, td, tfoot, th, thead, tr{
     font-size: 1.3rem;
 }
 
+
+/*form edit*/
+.form-edit{
+    margin-bottom: 20px;
+}
+
 @media only screen and (max-width: 768px){
 
    /* html{
