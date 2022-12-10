@@ -52,7 +52,9 @@ public class UserProfilServlet extends HttpServlet {
                 userToUpd.get().setRoleId(Integer.parseInt(req.getParameter("userRole")));
 
                 userDao.update(userToUpd.get());
+
                 resp.sendRedirect(req.getContextPath() + UserListServlet.URL+ "?currentPage=1&recordsPerPage=5");
+
             }
             else{
                 System.out.println("Aucun user n'a été trouvé.");

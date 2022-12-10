@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <header class="d-flex d-md-block justify-content-between align-items-center">
         <div class="logo">
-            <a href="${pageContext.request.contextPath}/user"><img class="w-100" src="${pageContext.request.contextPath}/assets/img/icons8-calendar-100.png" alt="logo calendar"></a>
+            <a href="${pageContext.request.contextPath}/user?currentPage=1&recordsPerPage=5"><img class="w-100" src="${pageContext.request.contextPath}/assets/img/icons8-calendar-100.png" alt="logo calendar"></a>
         </div>
     <nav class="main-nav d-none d-sm-flex flex-md-column">
         <ul class="d-sm-flex flex-md-column ">
-           <li class="list"><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/user"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></li>
+           <li class="list"><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/user?currentPage=1&recordsPerPage=5"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></li>
            <li class="list"><a class="d-flex align-items-center" href="#"><i class="fa-regular fa-user"></i><span>Profil</span></a></li>
-           <li class="list"><a class="d-flex align-items-center" href="#"><i class="fa-solid fa-gear"></i><span>Settings</span></a></li>
+           <li class="list"><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/search"><i class="fa-solid fa-magnifying-glass"></i><span>Rechercher</span></a></li>
         </ul>
         <div class="logout w-100">
                 <form class="logout-form text-center" action="${pageContext.request.contextPath}/logout" method="post">

@@ -19,12 +19,13 @@ public class UserListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDao<UsersEntity> userDao = DaoFactory.getUserDao();
+
         List<UsersEntity> userList = userDao.findAll();
         int currentPage = Integer.parseInt(request.getParameter("currentPage"));
         int recordsPerPage = Integer.parseInt(request.getParameter("recordsPerPage"));
 
         /*------------------------------------------------------------------*/
-        List<UsersEntity> userList1 = userDao.findAllUser(currentPage, recordsPerPage);
+        List<UsersEntity> userListFilter = userDao.findAllUser(currentPage, recordsPerPage);
 
         int rows = userList.size();
 
@@ -41,8 +42,11 @@ public class UserListServlet extends HttpServlet {
 
 
         List<UsersEntity> usersActives = userList.stream().filter(user -> user.getIsActive() == 0).collect(Collectors.toList());
+        List<UsersEntity> usersAdmins = userList.stream().filter(user -> user.getRoleId() == 2).collect(Collectors.toList());
+
+        request.setAttribute("usersAdmins", usersAdmins );
         request.setAttribute("usersSize", userList);
-        request.setAttribute("users", userList1);
+        request.setAttribute("users", userListFilter);
         request.setAttribute("usersActives", usersActives);
         request.getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
     }
