@@ -35,6 +35,34 @@ public class UserDaoJpa implements UserDao<UsersEntity> {
         return userList;
     }
 
+    /*----------------------------------------------------------*/
+
+    public List<UsersEntity> findAllUser(int currentPage, int recordsPerPage) {
+        List<UsersEntity> userList = new ArrayList<>();
+        int start = currentPage * recordsPerPage - recordsPerPage;
+
+        EntityManager entityManager = emf.createEntityManager();
+        EntityTransaction et = entityManager.getTransaction();
+
+        try{
+            et.begin();
+
+            TypedQuery<UsersEntity> query = entityManager.createQuery("SELECT u from UsersEntity u JOIN FETCH u.rolesByRoleId", UsersEntity.class);
+            query.setFirstResult((currentPage - 1)*recordsPerPage);
+            query.setMaxResults(recordsPerPage);
+            userList = query.getResultList();
+            et.commit();
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+            if(et.isActive()) {et.rollback();}
+        } finally {
+            entityManager.close();
+        }
+        return userList;
+    }
+
     @Override
     public Optional<UsersEntity> findById(int id) {
         EntityManager entityManager = emf.createEntityManager();

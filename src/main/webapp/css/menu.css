@@ -1,0 +1,155 @@
+
+.main-nav > ul {
+    padding: 15px;
+}
+
+nav > ul > li {
+    margin: 20px 0;
+    color: var(--white);
+}
+
+.list:hover {
+    color: var(--secondary);
+}
+
+header {
+    padding: 50px 0;
+    background-color: var(--primary);
+    flex-basis: 250px;
+    border: 1px solid #111;
+}
+
+.fa-gauge-high, .fa-user, .fa-gear, .fa-magnifying-glass {
+    width: 70px;
+    padding-left: 10px;
+}
+
+.logo {
+    padding: 0 30px;
+}
+
+.logout {
+    padding: 20px;
+    background-color: var(--secondary);
+}
+
+.logout-form > button {
+    color: var(--white);
+    font-size: 18px;
+    background-color: transparent;
+    letter-spacing: 3px;
+}
+
+@media only screen and (max-width: 768px) {
+
+    header {
+        flex-basis: 100px;
+        width: 100%;
+        padding: 15px;
+    }
+
+    ul {
+        align-items: center;
+        margin-right: 20px;
+        margin-bottom: 0;
+    }
+
+    nav > ul > li {
+        margin: 0 5px 0 0;
+    }
+
+    .fa-gauge-high, .fa-user, .fa-gear, .fa-magnifying-glass {
+        width: 35px;
+        font-size: 20px;
+    }
+
+    .logo {
+        padding: 0;
+    }
+
+    .logo img {
+        width: 75px;
+    }
+
+    .main-nav {
+        z-index: 3;
+        width: auto;
+        display: flex;
+        align-items: center;
+    }
+
+    .main-nav > ul {
+        padding: 0;
+    }
+
+    .logout {
+        padding: 0;
+        background: none;
+        margin: 0 10px;
+    }
+
+    .logout-form > button {
+        letter-spacing: 0;
+    }
+
+}
+
+@media only screen and (max-width: 576px ) {
+    header {
+        padding: 10px;
+    }
+
+    .main-nav.active {
+        width: 100%;
+        display: block !important;
+        position: absolute;
+        top: 120px;
+        left: 0;
+        background-color: var(--primary);
+    }
+
+    .fa-gauge-high, .fa-user, .fa-gear, .fa-magnifying-glass {
+        width: 70px;
+        color: inherit;
+        font-size: 30px;
+        padding-left: 10px;
+    }
+
+    .logout {
+        margin: 30px 0 0;
+        padding: 20px;
+        background-color: var(--secondary);
+    }
+
+
+    .main-nav ul {
+        padding: 0;
+        border-top: 1px solid #5D7893;
+        margin: 0;
+        display: block;
+    }
+
+    nav > ul > li {
+        margin: 0;
+        padding: 15px;
+        border-radius: 0;
+        border-bottom: 1px solid #5D7893;
+    }
+
+    .nav-toggler {
+        height: 40px;
+        width: 40px;
+        margin-right: 20px;
+        background: none;
+        cursor: pointer;
+    }
+
+    .logout {
+        margin: 0;
+    }
+
+    .logout-form > button {
+        letter-spacing: 3px;
+    }
+
+}

@@ -21,29 +21,28 @@ public class DesactUserServlet extends HttpServlet {
         try {
             String idStr = req.getParameter("id");
 
-        UserDaoJpa userDao = new UserDaoJpa();
-        Optional<UsersEntity> userToDesact = userDao.findById(Integer.parseInt(idStr));
+            UserDaoJpa userDao = new UserDaoJpa();
+            Optional<UsersEntity> userToDesact = userDao.findById(Integer.parseInt(idStr));
 
 
-        if(userToDesact.isPresent()){
-            if(userToDesact.get().getRoleId() == 1){
-                if(userToDesact.get().getIsActive().equals((byte) 1)){
-                    userToDesact.get().setIsActive((byte) 0);
-                    //userDao.desactUser(userToDesact.get(), (byte) 0);
-                    userDao.update(userToDesact.get());
+            if (userToDesact.isPresent()) {
+                if (userToDesact.get().getRoleId() == 1) {
+                    if (userToDesact.get().getIsActive().equals((byte) 1)) {
+                        userToDesact.get().setIsActive((byte) 0);
+                        //userDao.desactUser(userToDesact.get(), (byte) 0);
+                        userDao.update(userToDesact.get());
 
-                    resp.sendRedirect(req.getContextPath() + "/user");
-                }else {
-                    resp.sendRedirect(req.getContextPath() + "/user");
+                        resp.sendRedirect(req.getContextPath() + UserListServlet.URL + "?currentPage=1&recordsPerPage=5");
+                    } else {
+                        resp.sendRedirect(req.getContextPath() + UserListServlet.URL + "?currentPage=1&recordsPerPage=5");
+                    }
+                } else {
+                    resp.sendRedirect(req.getContextPath() + UserListServlet.URL + "?currentPage=1&recordsPerPage=5");
+                    System.out.println("Cet utilisateur est administrateur. Il ne peux pas être supprimé.");
                 }
-            }else {
-                resp.sendRedirect(req.getContextPath() + "/user");
-                System.out.println("Cet utilisateur est administrateur. Il ne peux pas être supprimé.");
+            } else {
+                System.out.println("Aucun user n'a été trouvé avec cet id");
             }
-
-        }else{
-            System.out.println("Aucun user n'a été trouvé avec cet id");
-        }
         }catch (NumberFormatException e) {
             System.err.println(e.getMessage());
         }

@@ -29,9 +29,9 @@ public class ActivUserServlet extends HttpServlet {
                     userToActiv.get().setIsActive((byte) 1);
                     userDao.update(userToActiv.get());
 
-                    resp.sendRedirect(req.getContextPath() + "/user");
+                    resp.sendRedirect(req.getContextPath() + UserListServlet.URL+ "?currentPage=1&recordsPerPage=5");
                 }else {
-                    resp.sendRedirect(req.getContextPath() + "/user");
+                    resp.sendRedirect(req.getContextPath() + UserListServlet.URL+ "?currentPage=1&recordsPerPage=5");
                 }
             }else{
                 System.out.println("Aucun user n'a été trouvé avec cet id");

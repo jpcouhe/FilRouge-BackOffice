@@ -1,6 +1,7 @@
 package com.example.backofficefilrouge.servlet;
 
 import com.example.backofficefilrouge.Dao.UserDao;
+import com.example.backofficefilrouge.Dao.UserDaoJpa;
 import com.example.backofficefilrouge.entity.UsersEntity;
 import com.example.backofficefilrouge.factory.DaoFactory;
 import jakarta.servlet.*;
@@ -18,13 +19,34 @@ public class UserListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDao<UsersEntity> userDao = DaoFactory.getUserDao();
+
         List<UsersEntity> userList = userDao.findAll();
+        int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+        int recordsPerPage = Integer.parseInt(request.getParameter("recordsPerPage"));
+
+        /*------------------------------------------------------------------*/
+        List<UsersEntity> userListFilter = userDao.findAllUser(currentPage, recordsPerPage);
+
+        int rows = userList.size();
+
+        int nOfPages = rows / recordsPerPage;
+
+        if (nOfPages % recordsPerPage > 0) {
+            nOfPages++;
+        }
+
+        request.setAttribute("noOfPages", nOfPages);
+        request.setAttribute("currentPage", currentPage);
+        request.setAttribute("recordsPerPage", recordsPerPage);
+        /*------------------------------------------------------------------*/
 
 
         List<UsersEntity> usersActives = userList.stream().filter(user -> user.getIsActive() == 0).collect(Collectors.toList());
+        List<UsersEntity> usersAdmins = userList.stream().filter(user -> user.getRoleId() == 2).collect(Collectors.toList());
 
-        System.out.println(usersActives);
-        request.setAttribute("users", userList);
+        request.setAttribute("usersAdmins", usersAdmins );
+        request.setAttribute("usersSize", userList);
+        request.setAttribute("users", userListFilter);
         request.setAttribute("usersActives", usersActives);
         request.getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
     }
