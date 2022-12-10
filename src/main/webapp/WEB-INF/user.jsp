@@ -110,13 +110,15 @@
                                    class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
                                     class="fas fa-pencil-alt"></i></a></li>
                             <li>
-                                <button class="text-danger border-0" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal"><i class="far fa-trash-alt"></i></button>
+                 <%--               <button class="text-danger border-0" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal${user.userId}" id="myInput"><i class="far fa-trash-alt"></i></button>--%>
+                                <button class="text-danger border-0 myInput" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal" data-id="${user.userId}"><i class="far fa-trash-alt"></i></button>
                             </li>
                         </ul>
                     </td>
                 </tr>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+               <%-- <div class="modal fade" id="exampleModal${user.userId}" tabindex="-1" aria-labelledby="exampleModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -137,9 +139,33 @@
                             </div>
                         </div>
                     </div>
+                </div>--%>
+
                     </c:forEach>
                 </tbody>
             </table>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title" id="exampleModalLabel">Suppression du compte</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="modal-bod p-5">
+                            Si vous continuez, le profil et les informations du compte seront totalements supprimés.
+                            En revanche, si vous changez d'avis, sachez que vous ne pourrez pas le récupérer
+                        </div>
+                        <div class="modal-footer">
+                            <form action="${pageContext.request.contextPath}/user/delete?id=${user.userId}"
+                                  method="post" id="myModalForm">
+                                <button type="submit" class="btn btn-danger">Confirmer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <c:if test="${fn:length(usersSize) > 5}">
                 <div class="text-center mt-3 mt-sm-3">
                     <ul class="pagination justify-content-center mb-0">

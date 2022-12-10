@@ -25,4 +25,15 @@ function toggleNav(){
 
 // Modal
 
+const myModal = document.getElementById('exampleModal')
+const myInput = document.querySelectorAll('.myInput')
+const myModalForm = document.getElementById("myModalForm")
 
+myInput.forEach(
+    btn => {
+        btn.addEventListener("click", ()=>{
+            myModalForm.setAttribute("action","/user/delete?id="+btn.dataset.id )
+
+        })
+    }
+)
