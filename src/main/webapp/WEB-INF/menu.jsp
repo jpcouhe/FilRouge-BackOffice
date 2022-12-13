@@ -6,7 +6,7 @@
     <nav class="main-nav d-none d-sm-flex flex-md-column">
         <ul class="d-sm-flex flex-md-column ">
            <li class="list"><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/user?currentPage=1&recordsPerPage=5"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></li>
-           <li class="list"><a class="d-flex align-items-center" href="#"><i class="fa-regular fa-user"></i><span>Profil</span></a></li>
+           <li class="list"><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/user/edit?id=${idAdmin}"><i class="fa-regular fa-user"></i><span>Profil</span></a></li>
            <li class="list"><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/search"><i class="fa-solid fa-magnifying-glass"></i><span>Rechercher</span></a></li>
         </ul>
         <div class="logout w-100">

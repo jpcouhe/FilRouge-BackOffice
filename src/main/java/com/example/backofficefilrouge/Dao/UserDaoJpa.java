@@ -39,8 +39,8 @@ public class UserDaoJpa implements UserDao<UsersEntity> {
 
     public List<UsersEntity> findAllUser(int currentPage, int recordsPerPage) {
         List<UsersEntity> userList = new ArrayList<>();
-        int start = currentPage * recordsPerPage - recordsPerPage;
 
+        int start = currentPage * recordsPerPage - recordsPerPage;
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction et = entityManager.getTransaction();
 
@@ -87,7 +87,7 @@ public class UserDaoJpa implements UserDao<UsersEntity> {
         return Optional.empty();
     }
 
-    public Optional<List<UsersEntity>> findByName(String name) {
+   /* public Optional<List<UsersEntity>> findByName(String name) {
         List<UsersEntity> userList = new ArrayList<>();
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
@@ -106,8 +106,27 @@ public class UserDaoJpa implements UserDao<UsersEntity> {
             em.close();
         }
         return Optional.empty();
-    }
+    }*/
+    public Optional<List<UsersEntity>> findByvalue(String value) {
 
+        List<UsersEntity> userList = new ArrayList<>();
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            TypedQuery<UsersEntity> query = em.createQuery("SELECT u FROM UsersEntity u WHERE u.userName LIKE :value OR u.userEmail LIKE :value OR u.rolesByRoleId.roleName LIKE :value OR u.userCity LIKE :value", UsersEntity.class).setParameter("value", "%" + value + "%");
+            userList = query.getResultList();
+            et.commit();
+            return Optional.of(userList);
+        } catch (Exception e) {
+            if (et.isActive()){
+                et.rollback();
+            }
+        } finally {
+            em.close();
+        }
+        return Optional.empty();
+    }
     public Optional<List<UsersEntity>> findByFirstLetterName(String firstLetter) {
         //select nom from table where nom like 'a%'
         List<UsersEntity> userList = new ArrayList<>();

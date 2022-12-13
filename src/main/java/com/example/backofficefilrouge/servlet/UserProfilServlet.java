@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -20,6 +21,12 @@ public class UserProfilServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
+        Integer idUser = (Integer) req.getSession().getAttribute("id");
+        req.setAttribute("idAdmin", idUser);
+
+
         String idStr = req.getParameter("id");
         try{
             UserDaoJpa userDao = new UserDaoJpa();

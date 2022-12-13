@@ -18,6 +18,11 @@ public class UserListServlet extends HttpServlet {
     public static final String URL = "/user";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+        Integer idUser = (Integer) request.getSession().getAttribute("id");
+        request.setAttribute("idAdmin", idUser);
+
         UserDao<UsersEntity> userDao = DaoFactory.getUserDao();
 
         List<UsersEntity> userList = userDao.findAll();
@@ -43,6 +48,7 @@ public class UserListServlet extends HttpServlet {
 
         List<UsersEntity> usersActives = userList.stream().filter(user -> user.getIsActive() == 0).collect(Collectors.toList());
         List<UsersEntity> usersAdmins = userList.stream().filter(user -> user.getRoleId() == 2).collect(Collectors.toList());
+
 
         request.setAttribute("usersAdmins", usersAdmins );
         request.setAttribute("usersSize", userList);
