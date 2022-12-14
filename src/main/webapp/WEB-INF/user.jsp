@@ -46,13 +46,6 @@
         <div class="test user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm ">
             <div class="user-dashboard-header">
                 <h2>Tous les utilisateurs</h2>
-                <div class="input-group input-group-table mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
-                    </div>
-                    <input type="text" class="form-control" id="rechercher" placeholder="Rechercher"
-                           aria-label="rechercher" aria-describedby="basic-addon1">
-                </div>
             </div>
             <table class="table manage-users-top mb-0">
                 <thead>

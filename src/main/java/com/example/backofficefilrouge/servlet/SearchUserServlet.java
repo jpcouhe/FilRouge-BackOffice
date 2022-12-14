@@ -25,14 +25,23 @@ public class SearchUserServlet extends HttpServlet {
     if(req.getParameter("search") != null){
         UserDaoJpa userDao = new UserDaoJpa();
         String name = req.getParameter("search");
+        String radioName = req.getParameter("filter");
 
-        Optional<List<UsersEntity>> user = userDao.findByvalue(name);
+        Optional<List<UsersEntity>> user;
 
-        if(user.isPresent()){
+        if(radioName.equals("email")){
+           user = userDao.findByEmail(name);
+        }else{
+           user = userDao.findByName(name);
+        }
 
+        Optional<Integer> rows = userDao.sumFindByValue(name);
 
+        if(user.isPresent() && rows.isPresent()){
 
+            req.setAttribute("nbofUsersFound", rows);
             req.setAttribute("users", user.get());
+
             req.getRequestDispatcher("/WEB-INF/user-search.jsp").forward(req, resp);
         }else{
             String errorMessage = "Aucun user trouvé avec ce nom";

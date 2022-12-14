@@ -342,6 +342,10 @@ tbody, td, tfoot, th, thead, tr {
     padding: 0.8rem 0.75rem;
 }
 
+.checkbox{
+    margin-right: 20px;
+}
+
 .btn-search{
     background-color: var(--primary);
     color: var(--white);

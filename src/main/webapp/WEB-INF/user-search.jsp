@@ -26,15 +26,34 @@
   <div class="w-100 container-dashboard">
     <h1 class="mb-5">Rechercher</h1>
     <div>
-      <form class="input-group mb-3" method="get" action="${pageContext.request.contextPath}/search">
+      <form class="d-flex flex-column input-group mb-3" method="get" action="${pageContext.request.contextPath}/search">
+        <div class="d-flex mb-1 ">
 
-        <input type="text" class="form-control test" id="rechercher" placeholder="Rechercher"
-               aria-label="rechercher" aria-describedby="basic-addon1" name="search">
-        <button class="btn btn-search p-3"> <i class="fas fa-search"></i></button>
+        <div class="form-check checkbox">
+          <input class="form-check-input" type="radio" name="filter" id="flexRadioDefault1" value="name">
+          <label class="form-check-label" for="flexRadioDefault1">
+            Nom
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="filter" id="flexRadioDefault2" checked value="email">
+          <label class="form-check-label" for="flexRadioDefault2">
+            Email
+          </label>
+        </div>
+        </div>
+        <div class="d-flex">
+          <input type="text" class="form-control test" id="rechercher" placeholder="Rechercher"
+                 aria-label="rechercher" aria-describedby="basic-addon1" name="search">
+          <button class="btn btn-search p-3"> <i class="fas fa-search"></i></button>
+        </div>
+
       </form>
     </div>
+
     <c:if test="${!empty errorMessage}">Aucun résultats trouvés</c:if>
     <c:if test="${!empty users}">
+      <div class="mb-3">${fn:length(users)} résultats trouvés</div>
       <div class="test user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm ">
         <table class="table manage-users-top mb-0">
           <thead>
@@ -125,37 +144,6 @@
             </div>
           </div>
         </div>
-        <c:if test="${fn:length(usersSize) > 5}">
-          <div class="text-center mt-3 mt-sm-3">
-            <ul class="pagination justify-content-center mb-0">
-              <c:if test="${currentPage != 1}">
-                <li class="page-item"><a class="page-link"
-                                         href="user?currentPage=${currentPage-1}&recordsPerPage=${recordsPerPage}"><span>Prev</span>
-                </a></li>
-              </c:if>
-              <c:forEach begin="1" end="${noOfPages}" var="i">
-                <c:choose>
-                  <c:when test="${currentPage eq i}">
-                    <li class="page-item active">
-                      <a class="page-link">${i} <span class="sr-only">(current)</span></a>
-                    </li>
-                  </c:when>
-                  <c:otherwise>
-                    <li class="page-item">
-                      <a class="page-link"
-                         href="user?currentPage=${i}&recordsPerPage=${recordsPerPage}">${i}</a></li>
-                  </c:otherwise>
-                </c:choose>
-              </c:forEach>
-              <c:if test="${currentPage < noOfPages}">
-                <li class="page-item">
-                  <a class="page-link"
-                     href="user?currentPage=${currentPage+1}&recordsPerPage=${recordsPerPage}">Next</a>
-                </li>
-              </c:if>
-            </ul>
-          </div>
-        </c:if>
       </div>
       <div class="user-card-responsive">
         <c:forEach items="${users}" var="user">
@@ -169,68 +157,9 @@
             </a>
           </div>
         </c:forEach>
-        <div class="text-center mt-3 mt-sm-3">
-          <ul class="pagination justify-content-center mb-0">
-            <c:if test="${currentPage != 1}">
-              <li class="page-item"><a class="page-link"
-                                       href="user?currentPage=${currentPage-1}&recordsPerPage=${recordsPerPage}"><span>Prev</span>
-              </a></li>
-            </c:if>
-            <c:forEach begin="1" end="${noOfPages}" var="i">
-              <c:choose>
-                <c:when test="${currentPage eq i}">
-                  <li class="page-item active">
-                    <a class="page-link">${i} <span class="sr-only">(current)</span></a>
-                  </li>
-                </c:when>
-                <c:otherwise>
-                  <li class="page-item">
-                    <a class="page-link"
-                       href="user?currentPage=${i}&recordsPerPage=${recordsPerPage}">${i}</a></li>
-                </c:otherwise>
-              </c:choose>
-            </c:forEach>
-            <c:if test="${currentPage < noOfPages}">
-              <li class="page-item">
-                <a class="page-link"
-                   href="user?currentPage=${currentPage+1}&recordsPerPage=${recordsPerPage}">Next</a>
-              </li>
-            </c:if>
-          </ul>
-        </div>
       </div>
     </c:if>
-    <%--<c:if test="${fn:length(users) > 5}">
-      <div class="text-center mt-3 mt-sm-3">
-        <ul class="pagination justify-content-center mb-0">
-          <c:if test="${currentPage != 1}">
-            <li class="page-item"><a class="page-link"
-                                     href="search?currentPage=${currentPage-1}&recordsPerPage=${recordsPerPage}"><span>Prev</span>
-            </a></li>
-          </c:if>
-          <c:forEach begin="1" end="${noOfPages}" var="i">
-            <c:choose>
-              <c:when test="${currentPage eq i}">
-                <li class="page-item active">
-                  <a class="page-link">${i} <span class="sr-only">(current)</span></a>
-                </li>
-              </c:when>
-              <c:otherwise>
-                <li class="page-item">
-                  <a class="page-link"
-                     href="search?currentPage=${i}&recordsPerPage=${recordsPerPage}">${i}</a></li>
-              </c:otherwise>
-            </c:choose>
-          </c:forEach>
-          <c:if test="${currentPage < noOfPages}">
-            <li class="page-item">
-              <a class="page-link"
-                 href="search?currentPage=${currentPage+1}&recordsPerPage=${recordsPerPage}">Next</a>
-            </li>
-          </c:if>
-        </ul>
-      </div>
-    </c:if>--%>
+
   </div>
 
 

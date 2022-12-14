@@ -1,3 +1,5 @@
+console.log("salut")
+
 
 // navigation
 
@@ -33,3 +35,18 @@ myInput.forEach(
         })
     }
 )
+
+//Form validation
+
+const btn = document.querySelector('.btn-delete')
+const wrapper = document.querySelector(".wrapper")
+let inputs = [...wrapper.querySelectorAll('.form-control')]
+
+function validate(){
+    let isIncomplete = inputs.some(input => !input.value);
+    btn.disabled = isIncomplete;
+    btn.style.cursor = isIncomplete ? "not-allowed" : "pointer";
+}
+
+wrapper.addEventListener('input', validate);
+validate()
