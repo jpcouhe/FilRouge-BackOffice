@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/icons8-calendar-100.ico">
 
 </head>
 <body>
@@ -31,7 +32,7 @@
         </c:choose>
         <div class="card-profil">
             <img class="card-profil-img" src="https://bootdey.com/img/Content/avatar/avatar4.png">
-            <form method="post" class="needs-validation form-edit" novalidate
+            <form method="post" class="needs-validation form-edit" if="formSubmitEdit"
                   action="${pageContext.request.contextPath}/user/edit?id=${user.userId}">
                 <div class="row g-3">
                     <div class="col-6">
@@ -59,7 +60,7 @@
                                         <c:otherwise>
                                             <option value="">Choisir...</option>
                                             <option value="2" disabled >admin</option>
-                                            <option value="1" disabled selected>user</option>
+                                            <option value="1" selected>user</option>
                                         </c:otherwise>
                                     </c:choose>
 
@@ -73,10 +74,16 @@
                                         </c:when>
                                         <c:otherwise>
                                             <option value="">Choisir...</option>
-                                            <option value="2" selected disabled>admin</option>
+                                            <option value="2" selected>admin</option>
                                             <option value="1" disabled >user</option>
                                         </c:otherwise>
                                     </c:choose>
+                                </c:when>
+                                <c:when test="${user.roleId == 3}">
+                                    <option value="">Choisir...</option>
+                                    <option value="3" selected>superadmin</option>
+                                    <option value="2" disabled >admin</option>
+                                    <option value="1" disabled >user</option>
                                 </c:when>
                             </c:choose>
                         </select>
@@ -84,11 +91,11 @@
                     <div class="col-12">
                         <label for="city" class="form-label">Ville</label>
                         <input type="text" class="form-control form-profil" id="city" name="userCity"
-                               value="${user.userCity}">
+                               value="${user.userCity}" >
                     </div>
                 </div>
                 <div class="d-flex justify-content-center profil-action">
-                    <button class="w-50 btn btn-primary btn-lg" type="submit">Modifier</button>
+                    <button class="w-50 btn btn-primary btn-lg" type="submit" id="btnModifier">Modifier</button>
                 </div>
             </form>
             <c:choose>

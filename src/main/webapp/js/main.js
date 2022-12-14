@@ -19,10 +19,6 @@ function toggleNav(){
     }
 }
 
-
-
-
-
 // Modal
 
 const myModal = document.getElementById('exampleModal')
