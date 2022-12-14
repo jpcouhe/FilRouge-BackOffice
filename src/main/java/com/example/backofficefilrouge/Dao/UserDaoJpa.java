@@ -117,6 +117,9 @@ public class UserDaoJpa implements UserDao<UsersEntity> {
             TypedQuery<UsersEntity> query = em.createQuery("SELECT u FROM UsersEntity u WHERE u.userName LIKE :value OR u.userEmail LIKE :value OR u.rolesByRoleId.roleName LIKE :value OR u.userCity LIKE :value", UsersEntity.class).setParameter("value", "%" + value + "%");
             userList = query.getResultList();
             et.commit();
+            if(userList.size() == 0)
+            {return Optional.empty();
+            };
             return Optional.of(userList);
         } catch (Exception e) {
             if (et.isActive()){

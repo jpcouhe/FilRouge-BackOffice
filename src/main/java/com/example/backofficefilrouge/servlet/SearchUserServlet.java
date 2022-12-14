@@ -26,20 +26,22 @@ public class SearchUserServlet extends HttpServlet {
         UserDaoJpa userDao = new UserDaoJpa();
         String name = req.getParameter("search");
 
-       /* Optional<List<UsersEntity>> user = userDao.findByName(name);*/
         Optional<List<UsersEntity>> user = userDao.findByvalue(name);
 
         if(user.isPresent()){
-            req.setAttribute("usersByName", user.get());
+
+
+
+            req.setAttribute("users", user.get());
             req.getRequestDispatcher("/WEB-INF/user-search.jsp").forward(req, resp);
         }else{
+            String errorMessage = "Aucun user trouvé avec ce nom";
+            req.setAttribute("errorMessage", errorMessage);
             req.getRequestDispatcher("/WEB-INF/user-search.jsp").forward(req, resp);
-            System.out.println("Aucun user trouvé avec ce nom");
         }
     }else{
         req.getRequestDispatcher("/WEB-INF/user-search.jsp").forward(req, resp);
     }
-
     }
 
     @Override

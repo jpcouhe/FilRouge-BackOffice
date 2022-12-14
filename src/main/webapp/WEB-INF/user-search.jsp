@@ -7,9 +7,8 @@
   <title>Title</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <%--    <link href="<c:url value="/css/style.css" />" rel="stylesheet" type="text/css">--%>
-  <%--<style><%@include file="/css/style.css"%></style>--%>
-  <link href="<c:url value="/css/style.css" />" rel="stylesheet" type="text/css">
+  <%--<link href="<c:url value="/css/style.css" />" rel="stylesheet" type="text/css">--%>
+  <style><%@include file="/css/style.css"%></style>
   <link href="<c:url value="/css/menu.css" />" rel="stylesheet" type="text/css">
   <script src="https://kit.fontawesome.com/2588fb90ed.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,17 +23,17 @@
 <div class="d-flex flex-column flex-md-row min-vh-100">
   <%@ include file="menu.jsp" %>
   <div class="w-100 container-dashboard">
+    <h1 class="mb-5">Rechercher</h1>
     <div>
       <form class="input-group mb-3" method="get" action="${pageContext.request.contextPath}/search">
-        <div class="input-group-prepend">
-          <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
-        </div>
-        <input type="text" class="form-control" id="rechercher" placeholder="Rechercher"
+
+        <input type="text" class="form-control test" id="rechercher" placeholder="Rechercher"
                aria-label="rechercher" aria-describedby="basic-addon1" name="search">
-        <button type="submit">Rechercher</button>
+        <button class="btn btn-search p-3"> <i class="fas fa-search"></i></button>
       </form>
     </div>
-    <c:if test="${!empty usersByName}">
+    <c:if test="${!empty errorMessage}">Aucun résultats trouvés</c:if>
+    <c:if test="${!empty users}">
       <div class="test user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm ">
         <table class="table manage-users-top mb-0">
           <thead>
@@ -47,7 +46,7 @@
           </tr>
           </thead>
           <tbody>
-          <c:forEach items="${usersByName}" var="user">
+          <c:forEach items="${users}" var="user">
             <tr class="users-list">
               <td class="title  ">
                 <div class="thumb">
@@ -100,29 +99,6 @@
                 </ul>
               </td>
             </tr>
-            <%-- <div class="modal fade" id="exampleModal${user.userId}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                  aria-hidden="true">
-                 <div class="modal-dialog">
-                     <div class="modal-content">
-                         <div class="modal-header">
-                             <h1 class="modal-title" id="exampleModalLabel">Suppression du compte</h1>
-                             <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                     aria-label="Close"></button>
-                         </div>
-                         <div class="modal-bod p-5">
-                             Si vous continuez, le profil et les informations du compte seront totalements supprimés.
-                             En revanche, si vous changez d'avis, sachez que vous ne pourrez pas le récupérer
-                         </div>
-                         <div class="modal-footer">
-                             <form action="${pageContext.request.contextPath}/user/delete?id=${user.userId}"
-                                   method="post">
-                                 <button type="submit" class="btn btn-danger">Confirmer</button>
-                             </form>
-                         </div>
-                     </div>
-                 </div>
-             </div>--%>
-
           </c:forEach>
           </tbody>
         </table>
@@ -223,6 +199,37 @@
         </div>
       </div>
     </c:if>
+    <%--<c:if test="${fn:length(users) > 5}">
+      <div class="text-center mt-3 mt-sm-3">
+        <ul class="pagination justify-content-center mb-0">
+          <c:if test="${currentPage != 1}">
+            <li class="page-item"><a class="page-link"
+                                     href="search?currentPage=${currentPage-1}&recordsPerPage=${recordsPerPage}"><span>Prev</span>
+            </a></li>
+          </c:if>
+          <c:forEach begin="1" end="${noOfPages}" var="i">
+            <c:choose>
+              <c:when test="${currentPage eq i}">
+                <li class="page-item active">
+                  <a class="page-link">${i} <span class="sr-only">(current)</span></a>
+                </li>
+              </c:when>
+              <c:otherwise>
+                <li class="page-item">
+                  <a class="page-link"
+                     href="search?currentPage=${i}&recordsPerPage=${recordsPerPage}">${i}</a></li>
+              </c:otherwise>
+            </c:choose>
+          </c:forEach>
+          <c:if test="${currentPage < noOfPages}">
+            <li class="page-item">
+              <a class="page-link"
+                 href="search?currentPage=${currentPage+1}&recordsPerPage=${recordsPerPage}">Next</a>
+            </li>
+          </c:if>
+        </ul>
+      </div>
+    </c:if>--%>
   </div>
 
 

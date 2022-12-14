@@ -6,7 +6,8 @@
     <title>Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link href="<c:url value="/css/style.css" />" rel="stylesheet" type="text/css">
+    <%--<link href="<c:url value="/css/style.css" />" rel="stylesheet" type="text/css">--%>
+    <style><%@include file="/css/style.css"%></style>
     <link href="<c:url value="/css/menu.css" />" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/2588fb90ed.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +21,14 @@
 <div class="d-flex flex-column flex-md-row min-vh-100">
     <%@ include file="menu.jsp" %>
     <div class="w-100 container-dashboard">
-        <h1>Profil Utilisateur</h1>
+        <c:choose>
+            <c:when test="${user.userId == idAdmin}">
+                <h1>Profil</h1>
+            </c:when>
+            <c:otherwise>
+                <h1>Profil Utilisateur</h1>
+            </c:otherwise>
+        </c:choose>
         <div class="card-profil">
             <img class="card-profil-img" src="https://bootdey.com/img/Content/avatar/avatar4.png">
             <form method="post" class="needs-validation form-edit" novalidate
