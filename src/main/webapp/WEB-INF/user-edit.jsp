@@ -39,16 +39,37 @@
                     <div class="col-12">
                         <label for="role" class="form-label">Role</label>
                         <select class="form-select form-profil" id="role" name="userRole">
-                            <option value="">Choisir...</option>
+
                             <c:choose>
                                 <c:when test="${user.roleId == 1}">
-                                    <option value="2">admin</option>
-                                    <option value="1" selected>user</option>
+                                    <c:choose>
+                                        <c:when test="${idRole == 3}">
+                                            <option value="">Choisir...</option>
+                                            <option value="2" >admin</option>
+                                            <option value="1" selected>user</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option value="">Choisir...</option>
+                                            <option value="2" disabled >admin</option>
+                                            <option value="1" disabled selected>user</option>
+                                        </c:otherwise>
+                                    </c:choose>
+
                                 </c:when>
-                                <c:otherwise>
-                                    <option value="2" selected>admin</option>
-                                    <option value="1">user</option>
-                                </c:otherwise>
+                                <c:when test="${user.roleId == 2}">
+                                    <c:choose>
+                                        <c:when test="${idRole == 3}">
+                                            <option value="">Choisir...</option>
+                                            <option value="2"selected>admin</option>
+                                            <option value="1" >user</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option value="">Choisir...</option>
+                                            <option value="2" selected disabled>admin</option>
+                                            <option value="1" disabled >user</option>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:when>
                             </c:choose>
                         </select>
                     </div>

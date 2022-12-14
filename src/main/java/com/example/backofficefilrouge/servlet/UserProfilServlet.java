@@ -24,8 +24,9 @@ public class UserProfilServlet extends HttpServlet {
 
 
         Integer idUser = (Integer) req.getSession().getAttribute("id");
+        Integer idRole = (Integer) req.getSession().getAttribute("idRole");
         req.setAttribute("idAdmin", idUser);
-
+        req.setAttribute("idRole", idRole);
 
         String idStr = req.getParameter("id");
         try{

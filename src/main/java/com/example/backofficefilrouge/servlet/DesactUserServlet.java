@@ -18,6 +18,10 @@ public class DesactUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        Integer idRole = (Integer) req.getSession().getAttribute("idRole");
+        req.setAttribute("idRole", idRole);
+
         try {
             String idStr = req.getParameter("id");
 
@@ -26,19 +30,21 @@ public class DesactUserServlet extends HttpServlet {
 
 
             if (userToDesact.isPresent()) {
-                if (userToDesact.get().getRoleId() == 1) {
-                    if (userToDesact.get().getIsActive().equals((byte) 1)) {
-                        userToDesact.get().setIsActive((byte) 0);
-                        //userDao.desactUser(userToDesact.get(), (byte) 0);
-                        userDao.update(userToDesact.get());
+                if(idRole == 3 || idRole == 2){
+                    if (userToDesact.get().getRoleId() == 1) {
+                        if (userToDesact.get().getIsActive().equals((byte) 1)) {
+                            userToDesact.get().setIsActive((byte) 0);
+                            //userDao.desactUser(userToDesact.get(), (byte) 0);
+                            userDao.update(userToDesact.get());
 
-                        resp.sendRedirect(req.getContextPath() + UserListServlet.URL + "?currentPage=1&recordsPerPage=5");
+                            resp.sendRedirect(req.getContextPath() + UserListServlet.URL + "?currentPage=1&recordsPerPage=5");
+                        } else {
+                            resp.sendRedirect(req.getContextPath() + UserListServlet.URL + "?currentPage=1&recordsPerPage=5");
+                        }
                     } else {
                         resp.sendRedirect(req.getContextPath() + UserListServlet.URL + "?currentPage=1&recordsPerPage=5");
+                        System.out.println("Cet utilisateur est administrateur. Il ne peux pas être supprimé.");
                     }
-                } else {
-                    resp.sendRedirect(req.getContextPath() + UserListServlet.URL + "?currentPage=1&recordsPerPage=5");
-                    System.out.println("Cet utilisateur est administrateur. Il ne peux pas être supprimé.");
                 }
             } else {
                 System.out.println("Aucun user n'a été trouvé avec cet id");

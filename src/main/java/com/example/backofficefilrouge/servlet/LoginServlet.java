@@ -38,10 +38,11 @@ public class LoginServlet extends HttpServlet {
 
         try{
             if(userMailAndPsw.isPresent()){
-                if(userMailAndPsw.get().getRoleId() == 2){
+                if(userMailAndPsw.get().getRoleId() == 2 || userMailAndPsw.get().getRoleId() == 3){
                     HttpSession session = req.getSession(true);
                     session.setAttribute("mail", mail);
                     session.setAttribute("id", userMailAndPsw.get().getUserId());
+                    session.setAttribute("idRole", userMailAndPsw.get().getRoleId());
                     // Expiration after 30 minutes
                     session.setMaxInactiveInterval(30 * 60);
 

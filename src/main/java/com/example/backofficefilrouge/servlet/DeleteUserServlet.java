@@ -20,6 +20,10 @@ public class DeleteUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String idStr = req.getParameter("id");
 
+        Integer idRole = (Integer) req.getSession().getAttribute("idRole");
+        req.setAttribute("idRole", idRole);
+
+
         try {
             int id = Integer.parseInt(idStr);
             UserDaoJpa userDao = new UserDaoJpa();
@@ -27,13 +31,15 @@ public class DeleteUserServlet extends HttpServlet {
 
 
                 if (user.isPresent()) {
-                    if(user.get().getRoleId() == 1){
-                        userDao.delete(user.get());
-                        resp.sendRedirect(req.getContextPath() + UserListServlet.URL+ "?currentPage=1&recordsPerPage=5");
-                    }
-                    else{
-                        resp.sendRedirect(req.getContextPath() + UserListServlet.URL+ "?currentPage=1&recordsPerPage=5");
-                        System.out.println("Cet utilisateur est administrateur. Il ne peux pas être supprimé.");
+                    if(idRole == 3 || idRole == 2){
+                        if(user.get().getRoleId() == 1){
+                            userDao.delete(user.get());
+                            resp.sendRedirect(req.getContextPath() + UserListServlet.URL+ "?currentPage=1&recordsPerPage=5");
+                        }
+                        else{
+                            resp.sendRedirect(req.getContextPath() + UserListServlet.URL+ "?currentPage=1&recordsPerPage=5");
+                            System.out.println("Cet utilisateur est administrateur. Il ne peux pas être supprimé.");
+                        }
                     }
                 } else {
                     System.out.println("Aucun user");
