@@ -1,10 +1,16 @@
 
 .main-nav > ul {
     padding: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 nav > ul > li {
     margin: 20px 0;
+
+}
+
+nav > ul > li > a {
     color: var(--white);
 }
 
@@ -46,6 +52,11 @@ header {
         flex-basis: 100px;
         width: 100%;
         padding: 15px;
+    }
+
+    .main-nav > ul {
+
+        flex-direction: row;
     }
 
     ul {
@@ -121,6 +132,9 @@ header {
         background-color: var(--secondary);
     }
 
+    .main-nav{
+       display: none;
+    }
 
     .main-nav ul {
         padding: 0;

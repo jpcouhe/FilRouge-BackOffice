@@ -3,11 +3,11 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>Plan Yours dream - BackOffice</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <%--<link href="<c:url value="/css/style.css" />" rel="stylesheet" type="text/css">--%>
-    <style><%@include file="/css/style.css"%></style>
+    <link rel="shortcut icon" href="<c:url value="/assets/img/favicon-32x32.png" />">
+    <link href="<c:url value="/css/style.css" />" rel="stylesheet" type="text/css">
     <link href="<c:url value="/css/menu.css" />" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/2588fb90ed.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="/icons8-calendar-100.ico">
 
 </head>
 <body>
@@ -31,7 +30,9 @@
             </c:otherwise>
         </c:choose>
         <div class="card-profil">
-            <img class="card-profil-img" src="https://bootdey.com/img/Content/avatar/avatar4.png">
+            <div class="card-profil-img">
+                <img  src="${user.userPicture}">
+            </div>
 
             <form id=form" method="post" class="needs-validation form-edit"
                   action="${pageContext.request.contextPath}/user/edit?id=${user.userId}">
@@ -96,7 +97,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center profil-action">
-                    <button class="w-50 btn btn-primary btn-lg btn-delete" type="submit">Modifier</button>
+                    <button class="w-50 btn btn-primary btn-lg btn-edit" type="submit">Modifier</button>
                 </div>
             </form>
             <c:choose>
@@ -117,5 +118,6 @@
     </div>
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/edit-user.js"></script>
 </body>
 </html>

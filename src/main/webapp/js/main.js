@@ -37,6 +37,7 @@ myInput.forEach(
 )
 
 //Form validation
+/*
 
 const btn = document.querySelector('.btn-delete')
 const wrapper = document.querySelector(".wrapper")
@@ -50,3 +51,4 @@ function validate(){
 
 wrapper.addEventListener('input', validate);
 validate()
+*/

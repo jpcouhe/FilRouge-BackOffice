@@ -3,21 +3,17 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>Login - Plan Your Dreams - BackOffice</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <style>
-        <%@include file="/css/style.css" %>
-    </style>
-    <style>
-        <%@include file="/css/login.css" %>
-    </style>
+    <link rel="shortcut icon" href="<c:url value="/assets/img/favicon-32x32.png" />">
+    <link href="<c:url value="/css/style.css" />" rel="stylesheet" type="text/css">
+    <link href="<c:url value="/css/login.css" />" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/2588fb90ed.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="shortcut icon" href="/icons8-calendar-100.ico">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body class="text-center body-container">

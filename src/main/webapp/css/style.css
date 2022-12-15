@@ -32,7 +32,7 @@ ul {
 
 
 a {
-    color: var(--white);
+    color: var(--primary);
     text-decoration: none;
     font-size: 1.1rem;
 }
@@ -80,6 +80,11 @@ tbody, td, tfoot, th, thead, tr {
 }
 
 /* user-dashboard-info-box */
+
+.user-dashboard-info-box{
+    padding:1.5rem;
+}
+
 .user-dashboard-info-box .users-list .thumb {
     margin-right: 20px;
 }
@@ -87,10 +92,20 @@ tbody, td, tfoot, th, thead, tr {
 .user-dashboard-info-box .users-list .thumb img {
     width: 80px;
     height: 80px;
+    min-width: 80px;
     object-fit: cover;
     overflow: hidden;
     border-radius: 50%;
 }
+
+.user-mail {
+    max-width: 200px;
+}
+
+/*.user-name {
+    max-width: 200px;
+}*/
+
 
 .user-dashboard-info-box .title {
     display: flex;
@@ -261,7 +276,14 @@ tbody, td, tfoot, th, thead, tr {
 
 }
 
+.actions a {
+    font-size: 1.3rem;
+    margin-right: 5px;
+}
 
+.actions button {
+    font-size: 1.3rem;
+}
 
 .container-dashboard {
     margin-top: 80px;
@@ -315,12 +337,40 @@ tbody, td, tfoot, th, thead, tr {
     padding: 160px 40px 40px;
 }
 
+
+
 .card-profil-img {
     position: absolute;
-    border-radius: 50%;
     top: -100px;
     left: calc(50% - 100px);
     width: 200px;
+    height: 200px;
+}
+
+.card-profil-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.btn-edit{
+    background-color: var(--primary);
+    color: var(--white);
+    border: 1px solid var(--primary);
+    transition: 500ms all ease;
+}
+
+.btn-edit:hover{
+    background-color: var(--secondary);
+    border: 1px solid var(--secondary);
+}
+
+.btn.disabled, .btn:disabled, fieldset:disabled .btn{
+    background-color: var(--primary)!important;
+    border: 1px solid var(--primary);
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 
 .profil-action {
@@ -346,10 +396,22 @@ tbody, td, tfoot, th, thead, tr {
     margin-right: 20px;
 }
 
+.form-check-input:checked{
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.form-control-search{
+    border-bottom-right-radius:0px ;
+    border-top-right-radius:0px ;
+}
+
 .btn-search{
     background-color: var(--primary);
     color: var(--white);
     border: 1px solid var(--primary);
+    border-bottom-left-radius: 0px ;
+    border-top-left-radius: 0px;
     transition: 500ms all ease;
 }
 
@@ -359,12 +421,34 @@ tbody, td, tfoot, th, thead, tr {
     border: 1px solid var(--secondary);
 }
 
+/*Pagination*/
+
+.page-link{
+    color: var(--primary);
+}
+
+.page-link:hover{
+    color: var(--secondary)
+}
+
+.active>.page-link, .page-link.active {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+
+
 /*modal title*/
 
 .modal-title {
     font-size: 1.3rem;
 }
 
+/*user card responsive*/
+.card-img, .card-img-bottom, .card-img-top{
+    height: 200px;
+    object-fit: cover;
+}
 
 @media only screen and (max-width: 1024px ) {
 
@@ -394,6 +478,7 @@ tbody, td, tfoot, th, thead, tr {
         max-width: 20px;
     }
 
+
 }
 
 @media only screen and (max-width: 768px) {
@@ -402,10 +487,18 @@ tbody, td, tfoot, th, thead, tr {
         display: block;
     }
 
+    a {
+        font-size: 1rem;
+    }
+
+    .user-dashboard-info-box{
+        padding:1.2rem;
+    }
     .card-profil-img {
-        top: -50px;
-        left: calc(50% - 50px);
-        width: 100px;
+        top: -75px;
+        left: calc(50% - 75px);
+        width: 150px;
+        height: 150px;
     }
 
     .card-profil {
@@ -417,10 +510,38 @@ tbody, td, tfoot, th, thead, tr {
         margin-bottom: 30px;
     }
 
+
+
+
+
 }
 
 @media only screen and (max-width: 576px ) {
 
+    .user-dashboard-info-box{
+        padding:1rem;
+    }
+
+    .card-profil-img {
+        top: -50px;
+        left: calc(50% - 50px);
+        width: 100px;
+        height: 100px;
+    }
+
+    .dashboard {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .dashboard-card:first-child {
+        margin-right: 0;
+    }
+
+    .dashboard-card:last-child {
+        margin-left: 0;
+        margin-bottom: 20px;
+    }
 
     .user-dashboard-info-box .title {
         flex-direction: column;
@@ -449,35 +570,19 @@ tbody, td, tfoot, th, thead, tr {
         margin-right: 0;
     }
 
-    .user-list-details ul {
+/*    .user-list-details ul {
         display: block;
-    }
+    }*/
 }
 
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 500px) {
     .user-dashboard-info-box {
         display: none;
     }
 
-    .dashboard {
-        flex-direction: column;
-        margin: 0;
-    }
-
-
-    .dashboard-card:first-child {
-        margin-right: 0;
-    }
-
-    .dashboard-card:last-child {
-        margin-left: 0;
-        margin-bottom: 20px;
-    }
-
 }
 
-@media only screen and (min-width: 425px) {
-
+@media only screen and (min-width: 500px) {
     .card, .card-container, .user-card-responsive {
         display: none;
     }

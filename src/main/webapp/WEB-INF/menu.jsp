@@ -3,8 +3,8 @@
         <div class="logo">
             <a href="${pageContext.request.contextPath}/user?currentPage=1&recordsPerPage=5"><img class="w-100" src="${pageContext.request.contextPath}/assets/img/icons8-calendar-100.png" alt="logo calendar"></a>
         </div>
-    <nav class="main-nav d-none d-sm-flex flex-md-column">
-        <ul class="d-sm-flex flex-md-column ">
+    <nav class="main-nav">
+        <ul class="d-sm-flex  ">
            <li class="list"><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/user?currentPage=1&recordsPerPage=5"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></li>
            <li class="list"><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/user/edit?id=${idAdmin}"><i class="fa-regular fa-user"></i><span>Profil</span></a></li>
            <li class="list"><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/search"><i class="fa-solid fa-magnifying-glass"></i><span>Rechercher</span></a></li>

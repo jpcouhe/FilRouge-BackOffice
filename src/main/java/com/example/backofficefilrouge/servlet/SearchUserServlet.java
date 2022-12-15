@@ -31,6 +31,7 @@ public class SearchUserServlet extends HttpServlet {
 
         if(radioName.equals("email")){
            user = userDao.findByEmail(name);
+           req.setAttribute("filter", radioName);
         }else{
            user = userDao.findByName(name);
         }

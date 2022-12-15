@@ -4,11 +4,11 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Title</title>
+  <title>Profil - Plan Your Dreams - BackOffice</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <%--<link href="<c:url value="/css/style.css" />" rel="stylesheet" type="text/css">--%>
-  <style><%@include file="/css/style.css"%></style>
+  <link rel="shortcut icon" href="<c:url value="/assets/img/favicon-32x32.png" />">
+  <link href="<c:url value="/css/style.css" />" rel="stylesheet" type="text/css">
   <link href="<c:url value="/css/menu.css" />" rel="stylesheet" type="text/css">
   <script src="https://kit.fontawesome.com/2588fb90ed.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="shortcut icon" href="/icons8-calendar-100.ico">
 
 </head>
 <body>
@@ -28,24 +27,42 @@
     <div>
       <form class="d-flex flex-column input-group mb-3" method="get" action="${pageContext.request.contextPath}/search">
         <div class="d-flex mb-1 ">
-
-        <div class="form-check checkbox">
-          <input class="form-check-input" type="radio" name="filter" id="flexRadioDefault1" value="name">
-          <label class="form-check-label" for="flexRadioDefault1">
-            Nom
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="filter" id="flexRadioDefault2" checked value="email">
-          <label class="form-check-label" for="flexRadioDefault2">
-            Email
-          </label>
-        </div>
+          <c:choose>
+            <c:when test="${!empty filter}">
+              <div class="form-check checkbox">
+                <input class="form-check-input" type="radio" name="filter" id="flexRadioDefault1" value="name">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Nom
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="filter" id="flexRadioDefault2" checked value="email">
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Email
+                </label>
+              </div>
+            </c:when>
+            <c:otherwise>
+              <div class="form-check checkbox">
+                <input class="form-check-input" type="radio" name="filter" id="flexRadioDefault3" checked value="name">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Nom
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="filter" id="flexRadioDefault4" value="email">
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Email
+                </label>
+              </div>
+            </c:otherwise>
+          </c:choose>
         </div>
         <div class="d-flex">
-          <input type="text" class="form-control test" id="rechercher" placeholder="Rechercher"
+          <input type="text" class="form-control form-control-search" id="rechercher" placeholder="Rechercher"
                  aria-label="rechercher" aria-describedby="basic-addon1" name="search">
-          <button class="btn btn-search p-3"> <i class="fas fa-search"></i></button>
+
+          <button class="btn btn-search  p-3"> <i class="fas fa-search"></i></button>
         </div>
 
       </form>
@@ -70,22 +87,24 @@
             <tr class="users-list">
               <td class="title  ">
                 <div class="thumb">
-                  <img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="">
+                  <img class="img-fluid" src="${user.userPicture}" alt="">
                 </div>
-                <div class="user-list-details text-truncate">
-                  <div class="user-list-info text-truncate">
-                    <div class="user-list-title text-truncate user-name">
-                      <h5 class="text-truncate mb-0">${user.userFirstname} ${user.userName}</h5>
-                    </div>
-                    <div class="user-list-option">
-                      <ul class="list-unstyled user-name text-truncate">
-                        <li class="user-name text-truncate"><i
-                                class="fas fa-map-marker-alt pr-1 user-name text-truncate"> ${user.userCity} </i>
-                        </li>
-                      </ul>
+                <a href="${pageContext.request.contextPath}/user/edit?id=${user.userId}" alt="Profil utilisateur">
+                  <div class="user-list-details text-truncate">
+                    <div class="user-list-info text-truncate">
+                      <div class="user-list-title text-truncate user-name">
+                        <h5 class="text-truncate mb-0">${user.userFirstname} ${user.userName}</h5>
+                      </div>
+                      <div class="user-list-option">
+                        <ul class="list-unstyled user-name text-truncate">
+                          <li class="user-name text-truncate"><i
+                                  class="fas fa-map-marker-alt pr-1 user-name text-truncate"> ${user.userCity} </i>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </td>
               <td class="text-center text-truncate user-mail">
                 <a href="mailto:${user.userEmail}"><span class="span-td">${user.userEmail}</span></a>
@@ -111,8 +130,6 @@
                          class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
                           class="fas fa-pencil-alt"></i></a></li>
                   <li>
-                      <%--               <button class="text-danger border-0" data-bs-toggle="modal"
-                                             data-bs-target="#exampleModal${user.userId}" id="myInput"><i class="far fa-trash-alt"></i></button>--%>
                     <button class="text-danger border-0 myInput" data-bs-toggle="modal"
                             data-bs-target="#exampleModal" data-id="${user.userId}"><i class="far fa-trash-alt"></i></button>
                   </li>
@@ -149,7 +166,7 @@
         <c:forEach items="${users}" var="user">
           <div class="card" style="width: 100%;">
             <a href="${pageContext.request.contextPath}/user/edit?id=${user.userId}">
-              <img src="https://bootdey.com/img/Content/avatar/avatar4.png" class="card-img-top" alt="...">
+              <img src="${user.userPicture}" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">${user.userFirstname} ${user.userName}</h5>
                 <p class="card-text">${user.userEmail}</p>
