@@ -47,7 +47,7 @@ public class UserListServlet extends HttpServlet {
 
 
         List<UsersEntity> usersActives = userList.stream().filter(user -> user.getIsActive() == 0).collect(Collectors.toList());
-        List<UsersEntity> usersAdmins = userList.stream().filter(user -> user.getRoleId() == 2).collect(Collectors.toList());
+        List<UsersEntity> usersAdmins = userList.stream().filter(user -> user.getRoleId() == 2 ||  user.getRoleId() == 3).collect(Collectors.toList());
 
 
         request.setAttribute("usersAdmins", usersAdmins );

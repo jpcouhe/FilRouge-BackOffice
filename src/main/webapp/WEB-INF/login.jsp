@@ -19,7 +19,7 @@
 <body class="text-center body-container">
 <main class="form-signin w-100 m-auto">
     <img src="../assets/img/icons8-calendar-100.png" alt="">
-    <h1 class="h3 mb-5 fw-lighter">Backoffice</h1>
+    <h1 class="h3 mb-5 fw-lighter">Plan Your Dreams</h1>
     <c:if test="${loginFail}">
         <div class="alert alert-danger" role="alert">Bad credentials</div>
     </c:if>

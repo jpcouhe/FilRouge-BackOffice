@@ -60,7 +60,14 @@
                 <tr class="users-list">
                     <td class="title  ">
                         <div class="thumb">
-                            <img class="img-fluid" src="${user.userPicture}" alt="">
+                                <c:choose>
+                                    <c:when test="${user.userPicture == null}">
+                                        <img class="img-fluid" src="/assets/img/no-image-icon-6.png" alt="">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img class="img-fluid" src="${user.userPicture}"alt="">
+                                    </c:otherwise>
+                                </c:choose>
                         </div>
                         <div class="user-list-details text-truncate">
                             <div class="user-list-info text-truncate">
