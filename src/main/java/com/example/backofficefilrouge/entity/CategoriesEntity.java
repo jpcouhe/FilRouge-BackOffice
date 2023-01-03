@@ -61,3 +61,4 @@ public class CategoriesEntity {
         this.eventsByCategoryId = eventsByCategoryId;
     }
 }
+

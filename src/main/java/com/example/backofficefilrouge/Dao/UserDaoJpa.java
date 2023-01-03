@@ -1,5 +1,6 @@
 package com.example.backofficefilrouge.Dao;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.example.backofficefilrouge.entity.UsersEntity;
 import jakarta.persistence.*;
 
@@ -209,12 +210,22 @@ public class UserDaoJpa implements UserDao<UsersEntity> {
         EntityTransaction et = em.getTransaction();
         try {
             et.begin();
-            UsersEntity user = em.createQuery("SELECT u FROM UsersEntity u WHERE u.userEmail = :mailParam AND u.userPassword = :pswParam", UsersEntity.class)
+            /*UsersEntity user = em.createQuery("SELECT u FROM UsersEntity u WHERE u.userEmail = :mailParam AND u.userPassword = :pswParam", UsersEntity.class)
                     .setParameter("mailParam", mail)
-                    .setParameter("pswParam", psw)
+                    .setParameter("pswParam",  psw)
+                    .getSingleResult();*/
+            UsersEntity user = em.createQuery("SELECT u FROM UsersEntity u WHERE u.userEmail = :mailParam", UsersEntity.class)
+                    .setParameter("mailParam", mail)
                     .getSingleResult();
-            et.commit();
-            return Optional.of(user);
+
+            BCrypt.Result isMatch = BCrypt.verifyer().verify(psw.getBytes(), user.getUserPassword().getBytes());
+            if(isMatch.verified == true){
+                    et.commit();
+                    return Optional.of(user);
+            }else{
+                et.commit();
+                throw new RuntimeException();
+            }
         } catch (Exception e) {
             if (et.isActive()) {
                 et.rollback();

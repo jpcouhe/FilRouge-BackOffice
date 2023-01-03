@@ -87,7 +87,14 @@
             <tr class="users-list">
               <td class="title  ">
                 <div class="thumb">
-                  <img class="img-fluid" src="${user.userPicture}" alt="">
+                  <c:choose>
+                    <c:when test="${user.userPicture == null}">
+                      <img class="img-fluid" src="/assets/img/no-image-icon-6.png" alt="">
+                    </c:when>
+                    <c:otherwise>
+                      <img class="img-fluid" src="${user.userPicture}"alt="">
+                    </c:otherwise>
+                  </c:choose>
                 </div>
                 <a href="${pageContext.request.contextPath}/user/edit?id=${user.userId}" alt="Profil utilisateur">
                   <div class="user-list-details text-truncate">
@@ -166,7 +173,14 @@
         <c:forEach items="${users}" var="user">
           <div class="card" style="width: 100%;">
             <a href="${pageContext.request.contextPath}/user/edit?id=${user.userId}">
-              <img src="${user.userPicture}" class="card-img-top" alt="...">
+              <c:choose>
+                <c:when test="${user.userPicture == null}">
+                  <img class="img-fluid" src="/assets/img/no-image-icon-6.png" alt="">
+                </c:when>
+                <c:otherwise>
+                  <img class="img-fluid" src="${user.userPicture}"alt="">
+                </c:otherwise>
+              </c:choose>
               <div class="card-body">
                 <h5 class="card-title">${user.userFirstname} ${user.userName}</h5>
                 <p class="card-text">${user.userEmail}</p>

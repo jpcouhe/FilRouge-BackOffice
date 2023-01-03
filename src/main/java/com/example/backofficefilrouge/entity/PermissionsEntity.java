@@ -62,3 +62,4 @@ public class PermissionsEntity {
         this.interactsByPermissionId = interactsByPermissionId;
     }
 }
+

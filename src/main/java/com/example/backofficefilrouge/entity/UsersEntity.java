@@ -1,12 +1,16 @@
 package com.example.backofficefilrouge.entity;
 
+
 import jakarta.persistence.*;
 
+
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "users", schema = "bdd_fil_rouge")
-public class UsersEntity {
+public class UsersEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "user_id")
@@ -42,9 +46,25 @@ public class UsersEntity {
     private Collection<InteractEntity> interactsByUserId;
     @OneToMany(mappedBy = "usersByUserId" , cascade = {CascadeType.REMOVE})
     private Collection<PlanningsEntity> planningsByUserId;
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.EAGER)
+
     @JoinColumn(name = "role_id", referencedColumnName = "role_id", insertable = false, updatable = false)
     private RolesEntity rolesByRoleId;
+
+    public UsersEntity(String userName, String userFirstname, String userPassword, String userEmail, String userPicture, Byte isActive, int roleId, String userCity) {
+        this.userName = userName;
+        this.userFirstname = userFirstname;
+        this.userPassword = userPassword;
+        this.userEmail = userEmail;
+        this.userPicture = userPicture;
+        this.isActive = isActive;
+        this.roleId = roleId;
+        this.userCity = userCity;
+    }
+
+
+    public UsersEntity() {
+    }
 
     public int getUserId() {
         return userId;
@@ -174,4 +194,5 @@ public class UsersEntity {
     public void setUserCity(String userCity) {
         this.userCity = userCity;
     }
+
 }

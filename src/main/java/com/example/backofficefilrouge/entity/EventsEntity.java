@@ -25,7 +25,7 @@ public class EventsEntity {
     private Date eventEndDate;
     @Basic
     @Column(name = "category_id")
-    private int categoryId;
+    private Integer categoryId;
     @Basic
     @Column(name = "planning_id")
     private int planningId;
@@ -35,6 +35,24 @@ public class EventsEntity {
     @ManyToOne
     @JoinColumn(name = "planning_id", referencedColumnName = "planning_id", insertable = false, updatable = false)
     private PlanningsEntity planningsByPlanningId;
+
+    public EventsEntity(int eventId, String eventName, String eventDescription, Date eventStartDate, Date eventEndDate) {
+        this.eventId = eventId;
+        this.eventName = eventName;
+        this.eventDescription = eventDescription;
+        this.eventStartDate = eventStartDate;
+        this.eventEndDate = eventEndDate;
+    }
+
+    public EventsEntity(String eventName, String eventDescription, Date eventStartDate, Date eventEndDate) {
+        this.eventName = eventName;
+        this.eventDescription = eventDescription;
+        this.eventStartDate = eventStartDate;
+        this.eventEndDate = eventEndDate;
+    }
+
+    public EventsEntity() {
+    }
 
     public int getEventId() {
         return eventId;
@@ -76,11 +94,11 @@ public class EventsEntity {
         this.eventEndDate = eventEndDate;
     }
 
-    public int getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 

@@ -201,7 +201,14 @@
                 <div class="card">
                     <a href="${pageContext.request.contextPath}/user/edit?id=${user.userId}">
                         <div class="user-card-responsive-image">
-                            <img src="${user.userPicture}" class="card-img-top" alt="...">
+                            <c:choose>
+                                <c:when test="${user.userPicture == null}">
+                                    <img class="img-fluid" src="/assets/img/no-image-icon-6.png" alt="">
+                                </c:when>
+                                <c:otherwise>
+                                    <img class="img-fluid" src="${user.userPicture}"alt="">
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">${user.userFirstname} ${user.userName}</h5>
