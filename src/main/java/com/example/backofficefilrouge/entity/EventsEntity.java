@@ -18,10 +18,10 @@ public class EventsEntity {
     @Column(name = "event_description")
     private String eventDescription;
     @Basic
-    @Column(name = "event_startDate")
+    @Column(name = "event_start_date")
     private Date eventStartDate;
     @Basic
-    @Column(name = "event_endDate")
+    @Column(name = "event_end_date")
     private Date eventEndDate;
     @Basic
     @Column(name = "category_id")

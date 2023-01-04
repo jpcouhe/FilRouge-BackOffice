@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users", schema = "bdd_fil_rouge")
-public class UsersEntity{
+public class UsersEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "user_id")
@@ -31,7 +31,7 @@ public class UsersEntity{
     @Column(name = "user_picture")
     private String userPicture;
     @Basic
-    @Column(name = "isActive")
+    @Column(name = "is_active")
     private Byte isActive;
     @Basic
     @Column(name = "role_id")
@@ -47,7 +47,6 @@ public class UsersEntity{
     @OneToMany(mappedBy = "usersByUserId" , cascade = {CascadeType.REMOVE})
     private Collection<PlanningsEntity> planningsByUserId;
     @ManyToOne (fetch = FetchType.EAGER)
-
     @JoinColumn(name = "role_id", referencedColumnName = "role_id", insertable = false, updatable = false)
     private RolesEntity rolesByRoleId;
 
@@ -64,7 +63,9 @@ public class UsersEntity{
 
 
     public UsersEntity() {
+
     }
+
 
     public int getUserId() {
         return userId;
@@ -194,5 +195,6 @@ public class UsersEntity{
     public void setUserCity(String userCity) {
         this.userCity = userCity;
     }
+
 
 }

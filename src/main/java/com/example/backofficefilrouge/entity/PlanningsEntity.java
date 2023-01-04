@@ -19,7 +19,7 @@ public class PlanningsEntity {
     @Column(name = "planning_description")
     private String planningDescription;
     @Basic
-    @Column(name = "planning_createdAt")
+    @Column(name = "planning_created_at")
     private Date planningCreatedAt;
     @Basic
     @Column(name = "user_id")
