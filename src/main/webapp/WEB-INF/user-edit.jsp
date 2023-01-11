@@ -30,7 +30,7 @@
         </c:choose>
         <div class="card-profil">
             <div class="card-profil-img">
-                <img  src="${user.userPicture}">
+                <img  src="http://localhost:8080/files/${user.userPicture}">
             </div>
 
             <form id=form" method="post" class="needs-validation form-edit"

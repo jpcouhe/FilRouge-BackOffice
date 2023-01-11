@@ -92,7 +92,7 @@
                       <img class="img-fluid" src="/assets/img/no-image-icon-6.png" alt="">
                     </c:when>
                     <c:otherwise>
-                      <img class="img-fluid" src="${user.userPicture}"alt="">
+                      <img class="img-fluid" src="http://localhost:8080/files/${user.userPicture}"alt="">
                     </c:otherwise>
                   </c:choose>
                 </div>
@@ -178,7 +178,7 @@
                   <img class="img-fluid" src="/assets/img/no-image-icon-6.png" alt="">
                 </c:when>
                 <c:otherwise>
-                  <img class="img-fluid" src="${user.userPicture}"alt="">
+                  <img class="img-fluid" src="http://localhost:8080/files/${user.userPicture}"alt="">
                 </c:otherwise>
               </c:choose>
               <div class="card-body">
