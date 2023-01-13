@@ -14,6 +14,7 @@ import java.util.Optional;
 public class LoginServlet extends HttpServlet {
 
     public static final String URL = "/login";
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
@@ -29,6 +30,8 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
         String mail = req.getParameter("mail");
         String password = req.getParameter("password");
 
